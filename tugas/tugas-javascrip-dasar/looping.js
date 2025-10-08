@@ -2,20 +2,21 @@ console.log("");
 console.log("SOAL KE 1");
 console.log("-----------------");
 
-var loopPertama = 1;
-while (loopPertama <= 20) {
-  loopPertama == 1
-    ? console.log("LOOPING PERTAMA")
-    : console.log(loopPertama + " - I love coding");
-  loopPertama++;
+
+for (let i = 1; i <= 20; i++) {
+  if (i === 1) {
+    console.log("LOOPING PERTAMA");
+  }
+  console.log(i + " - I love coding");
+
+  if (i === 20) {
+    console.log("LOOPING KEDUA");
+    for (let j = 20; j > 1; j--) {
+      console.log(j + " - I will become a MERN Stack developer");
+    }
+  }
 }
-var loopKedua = 20;
-while (loopKedua > 1) {
-  loopKedua == 20
-    ? console.log("LOOPING KEDUA")
-    : console.log(loopKedua + " - I will become a MERN Stack developer");
-  loopKedua--;
-}
+
 
 console.log("");
 console.log("SOAL KE 2");
@@ -60,11 +61,14 @@ console.log("SOAL KE 5");
 console.log("-----------------");
 
 var sentence = "Fullstack Developer";
-for(i = 0; i < sentence.length; i++){
-    var konsonan = ["b","c","d","D","f","F","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"]
-    konsonan.forEach((huruf) =>
-     sentence[i] === huruf ? console.log(sentence[i]) : null
-    ); 
-    
+var hasil = "";
+
+for (i = 0; i < sentence.length; i++) {
+  var huruf = sentence[i].toLowerCase();
+
+  if ("aiueo ".indexOf(huruf) === -1) {
+    hasil += sentence[i]; 
+  }
 }
+console.log(hasil);
 

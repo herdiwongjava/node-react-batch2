@@ -66,11 +66,34 @@ console.log("SOAL KE 5");
 console.log("-----------------");
 
 var numbers = [4, 5, 1, 4, 6, 8, 9, 21];
+var jumlah = 0;
 
-var jumlah = 0
-for(i=0;i<numbers.length;i++){
-    jumlah + numbers
+for (i = 0; i < numbers.length; i++) {
+  jumlah += numbers[i];
 }
-console.log(jumlah)
+console.log("Jumlah : " + jumlah);
 
 
+
+console.log("");
+console.log("SOAL KE 6");
+console.log("-----------------");
+
+var kumpulanAngka = [
+  [1, 3, 5, 7, 8, 9],
+  [4, 5, 6, 2, 3, 1],
+  [6, 7, 8, 1, 3, 5],
+];
+var hasilJumlah = [];
+
+for (i = 0; i < kumpulanAngka.length; i++) {
+  var jumlah = 0;
+
+  for (j = 0; j < kumpulanAngka[i].length; j++) {
+    jumlah += kumpulanAngka[i][j];
+  }
+
+  hasilJumlah.push(jumlah);
+}
+
+console.log(hasilJumlah);
