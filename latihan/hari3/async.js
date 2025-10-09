@@ -23,7 +23,7 @@ const periksaAntrianDokter = (nomorAntri, callback) => {
       callback(nomorAntri + 1);
     // periksaAntrianDokter(nomorAntri+1)
     }
-  }, 2000);
+  }, 1000);
 };
 
 
@@ -32,4 +32,38 @@ const execute = (nomorAntri) => {
      nomorAntrianBaru !== 0 && execute(nomorAntrianBaru);
     });
 }
-execute(2);
+execute(10);
+
+
+console.log("");
+console.log("PROMISE");
+console.log("-----------------");
+
+let isMomHappy = false
+
+let willIGetNewPhone = new Promise(
+  (resolve, reject)=>{
+    if(isMomHappy){
+      let phone ={
+        brand: 'Samsung',
+        color: 'black'
+      }
+      resolve(phone)
+    } else {
+      let reason = new Error('mom is not happy')
+      reject(reason)
+    }
+  }
+)
+
+function askMom(){
+  willIGetNewPhone
+  .then((fulfilled) => {
+    console.log(fulfilled)
+  })
+  .catch((error) => {
+    console.log(error.message);
+  })
+}
+
+askMom()
