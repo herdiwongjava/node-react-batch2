@@ -1,0 +1,75 @@
+Soal 1: Membuat Database
+use myshop
+
+Soal 2: Membuat Collection dan Memasukkan Data
+db.users.insertMany([
+  {
+    name: "John Doe",
+    email: "john@doe.com",
+    password: "john123"
+  },
+  {
+    name: "Jane Doe",
+    email: "jane@doe.com",
+    password: "jenita123"
+  }
+])
+
+db.categories.insertMany([
+  { name: "gadget" },
+  { name: "cloth" },
+  { name: "men" },
+  { name: "women" },
+  { name: "branded" }
+])
+
+db.items.insertMany([
+  {
+    name: "Sumsang b50",
+    description: "hape keren dari merek sumsang",
+    price: 0,
+    stock: 0
+  },
+  {
+    name: "Uniklooh",
+    description: "baju keren dari brand ternama",
+    price: 100000,
+    stock: 10
+  },
+  {
+    name: "IMHO Watch",
+    description: "jam tangan anak yang jujur banget",
+    price: 0,
+    stock: 0
+  }
+])
+
+
+Soal 3 Mengambil Data dari Database
+Mengambil seluruh data users tanpa field password
+db.users.find({}, { password: 0 })
+
+
+Mengambil data items dengan harga di atas 1 juta
+db.items.find({ price: { $gt: 1000000 } })
+
+
+Mengambil data items yang namanya mirip dengan “uniklo”
+db.items.find({ name: { $regex: /uniklo/i } })
+
+db.items.find({ name: { $regex: /watch/i } })
+
+
+Soal 4 Mengubah data dari Database
+db.items.updateOne(
+  { name: "Sumsang b50" },
+  { $set: { price: 2500000 } }
+)
+
+
+
+
+
+
+
+
