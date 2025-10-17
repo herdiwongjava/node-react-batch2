@@ -3,9 +3,9 @@ const prisma = new PrismaClient();
 
 const handleInsertMovie = async (req, res) => {
   try {
-    let { title, year } = req.body;
+    let { title, year, categoryId } = req.body;
 
-    if (!title || !year) {
+    if (!title || !year || !categoryId) {
       res.json({
         message: "data yang dimasukkan salah",
         status: "unsuccess",
@@ -17,6 +17,7 @@ const handleInsertMovie = async (req, res) => {
       data: {
         title,
         year,
+        categoryId,
       },
     });
     res.json({
@@ -36,7 +37,15 @@ const handleInsertMovie = async (req, res) => {
 
 const handleReadMovies = async (req, res) => {
   try {
-    const movies = await prisma.movies.findMany();
+    const movies = await prisma.movies.findMany({
+      include: {
+        category: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
     res.json({
       message: "Data successfully Fetch",
       status: "successed",
@@ -55,6 +64,13 @@ const handleReadMovieById = async (req, res) => {
   const { id } = req.params;
   try {
     const movies = await prisma.movies.findUnique({
+      include: {
+        category: {
+            select: {
+              name: true,
+            },
+        },
+      },
       where: {
         id: Number(id),
       },
@@ -75,9 +91,17 @@ const handleReadMovieById = async (req, res) => {
 };
 
 const handleUpdateMovie = async (req, res) => {
+  let { title, year, category } = req.body;
+  let { id } = req.params;
+  if (!title || !year || !category) {
+    res.json({
+      message: "data yang dimasukkan salah",
+      status: "unsuccess",
+    });
+    return;
+  }
+
   try {
-    let { title, year } = req.body;
-    let { id } = req.params;
     const updateMovie = await prisma.movies.update({
       where: {
         id: Number(id),
@@ -85,6 +109,7 @@ const handleUpdateMovie = async (req, res) => {
       data: {
         title,
         year,
+        category,
       },
     });
     res.json({

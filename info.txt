@@ -1,0 +1,33 @@
+-API
+npm install express
+npm install nodemon
+
+-Database
+nmp install dotenv
+nmp install mysql2
+
+-Cross
+npm install cros
+
+-Prisma
+npm install prisma --save-dev
+npx prisma init --datasource-provider mysql --output ../generated/prisma
+npm install @prisma/client
+
+-migrasi PRISMA:
+npx prisma migrate dev
+
+npx prisma generate
+npx prisma studio
+
+
+-Auth
+npm install jsonwebtoken
+npm install bcrypt
+
+
+-swagger Dokumentasi Kit
+npm install --save-dev swagger-autogen
+npm install swagger-ui-express
+
+api : http://localhost:3000/api-docs/
