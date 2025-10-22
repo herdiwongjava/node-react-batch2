@@ -31,3 +31,9 @@ npm install --save-dev swagger-autogen
 npm install swagger-ui-express
 
 api : http://localhost:3000/api-docs/
+
+
+
+
+--react
+npm create vite@latest my-app -- --template react

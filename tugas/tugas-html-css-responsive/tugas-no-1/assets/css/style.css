@@ -1,0 +1,221 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Poppins";
+  box-sizing: border-box;
+  color: #203239;
+}
+
+.header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+nav > ul {
+  display: flex;
+  justify-content: space-evenly;
+  width: 400px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  font-weight: bolder;
+}
+
+.main {
+  margin: 100px 200px 100px 200px;
+}
+
+.container_hero {
+  margin-top: 250px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.container_hero-headline {
+  width: 50%;
+}
+
+.container_hero-image {
+  align-content: center;
+}
+
+.container_hero-image > img {
+  transition: all 0.5s ease;
+  display: block;
+  margin: 0 auto;
+  animation-name: jempol;
+  animation-duration: 15s;
+}
+
+.container_hero-image > img:hover {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.container_hero-headline > ul {
+  display: flex;
+  justify-content: flex-start;
+  width: 400px;
+}
+
+.container_hero-headline > ul > li {
+  margin-right: 40px;
+  font-size: 20px;
+}
+
+.container_hero-headline > ul > li :hover {
+  transform: scale(1.5) rotate(10deg);
+  transition: all 0.2s ease;
+}
+
+.container_describe {
+  margin-top: 250px;
+  display: flex;
+}
+
+.container_describe-animation {
+  width: 50%;
+  height: 300px;
+  background-color: #203239;
+  align-content: center;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.container_describe-animation > i {
+  font-size: 100px;
+  transition: all 0.5s ease;
+  animation-name: jempol;
+  animation-duration: 1s;
+  color: white;
+  margin: 20px;
+}
+
+.container_describe-info__card {
+  margin-left: 20px;
+  height: 300px;
+  border: solid black 1px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.container_describe-animation > i:hover {
+  transform: scale(1.5) rotate(-10deg);
+}
+
+@keyframes jempol {
+  from {
+    transform: rotate(20deg);
+  }
+
+  to {
+    transform: rotate(-20deg);
+  }
+}
+
+.container_describe-info {
+  width: 50%;
+}
+
+footer {
+  margin: 100px 200px 0 200px;
+}
+
+.container-history {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-wrapping__card {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.container-wrapping__card > img {
+  margin: 5px;
+  width: 300px;
+  transition: all 0.5s ease;
+}
+
+.container-wrapping__card > img:hover {
+  transform: scale(1.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 16px;
+  border: 1px solid;
+  text-align: left;
+}
+
+span {
+  color: coral;
+}
+
+small {
+  display: block;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+  .container_hero {
+    flex-direction: column-reverse;
+  }
+
+  .container_hero-headline {
+    width: 100%;
+  }
+
+  .container_hero-image {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .container_describe {
+    flex-direction: column;
+  }
+
+  .container_describe-info {
+    width: 100%;
+    margin-top: 30px;
+    /* background-color: aqua; */
+  }
+
+
+.container_describe-info__card {
+  height: 100%;
+  margin: 0;
+}
+
+  .container_describe-animation {
+    width: 100%;
+    /* background-color: aqua; */
+  }
+
+  nav > ul {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+  }
+}
