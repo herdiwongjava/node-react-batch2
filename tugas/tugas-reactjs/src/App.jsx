@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { Form } from "./component/Form";
 import { Title } from "./component/Title";
+import { Time } from "./component/Time";
 
 function App() {
   let thingsToDo = [
@@ -12,14 +13,9 @@ function App() {
     "Belajar ReactJS Advance",
   ];
 
-
-  const [time, setTime] = useState("");
-
   return (
     <>
-    <div className="time">
-    <h1>Now At - </h1>
-    </div>
+    <Time />
       <div className="container">
         <img src="/logo.png" alt="" />
         <div className="container_list">
