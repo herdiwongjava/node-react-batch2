@@ -38,3 +38,7 @@ api : http://localhost:3000/api-docs/
 
 --react
 npm create vite@latest my-app -- --template react
+
+
+Install Tailwind CSS and daisyUI
+npm install tailwindcss@latest @tailwindcss/vite@latest daisyui@latest

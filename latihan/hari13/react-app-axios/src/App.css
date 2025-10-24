@@ -47,10 +47,10 @@ table {
 }
 
 th {
-    padding: 15px;
+  padding: 15px;
   background-color: #04aa6d;
   color: white;
-    border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 td {
@@ -62,10 +62,7 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 tr:hover {
-  /* background-color: coral;
-  color: white; */
-  /* transform: scale(1.05); */
-  border-left: 3px solid #04aa6d;
+  color: #04aa6d;
 }
 
 form {
@@ -79,7 +76,8 @@ label {
   display: block;
 }
 
-input[type="text"],input[type="number"],
+input[type="text"],
+input[type="number"],
 select {
   width: 100%;
   padding: 12px;
@@ -89,9 +87,6 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
-
-
 
 input[type="submit"] {
   width: 100%;
@@ -103,8 +98,6 @@ input[type="submit"] {
   border-radius: 4px;
   cursor: pointer;
 }
-
-
 
 input[type="submit"]:hover {
   background-color: #45a049;
@@ -121,10 +114,9 @@ input[type="submit"]:hover {
 }
 
 thead {
-position: sticky;
-top: 0;
+  position: sticky;
+  top: 0;
 }
-
 
 button {
   border: none;
@@ -142,5 +134,15 @@ button:hover {
   opacity: 50%;
 }
 
-.btn_edit {background-color: #04AA6D;} /* Green */
-.btn_delete {background-color: #f44336;} /* Red */ 
+.btn_edit {
+  background-color: #04aa6d;
+}
+.btn_delete {
+  background-color: #f44336;
+}
+
+.btn_cancle {
+  background-color: #f44336;
+  width: 100%;
+  border-radius: 4px;
+}

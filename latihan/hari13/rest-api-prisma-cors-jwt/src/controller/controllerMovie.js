@@ -101,7 +101,7 @@ const handleUpdateMovie = async (req, res) => {
     return;
   }
 
-// try{
+try{
     const updateMovie = await prisma.movies.update({
       where: {
         id: Number(id),
@@ -117,13 +117,13 @@ const handleUpdateMovie = async (req, res) => {
       status: "succes",
       updated: updateMovie,
     });
-//   } catch (err) {
-//     res.json({
-//       status: "filed",
-//       info: "id notfound",
-//       message: err,
-//     });
-//   }
+  } catch (err) {
+    res.json({
+      status: "filed",
+      info: "id notfound",
+      message: err,
+    });
+  }
 };
 
 const handleDeleteMovie = async (req, res) => {

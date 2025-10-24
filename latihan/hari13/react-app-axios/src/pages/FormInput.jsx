@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const FormInput = ({ setFetch, fetch, dataUpdate }) => {
+export const FormInput = ({ setFetch, fetch, dataUpdate, setDataUpdate }) => {
   const [category, setCategory] = useState([]);
   const [movieName, setMovieName] = useState("");
   const [movieYear, setMovieYear] = useState("");
   const [movieCategory, setMovieCategory] = useState("");
   const [viewError, setViewError] = useState({});
-  const [viewUpdate, setViewUpdate] = useState(false);
-  const [ dataID, setDataID] = useState(0)
 
   useEffect(() => {
     fetchCategory();
@@ -26,47 +24,45 @@ export const FormInput = ({ setFetch, fetch, dataUpdate }) => {
   };
 
   useEffect(() => {
-    handleDataUpdate(dataUpdate);
-    setViewUpdate(!viewUpdate);
-    if (!viewUpdate) {
-      setViewUpdate(false);
-    }
+    const { title, year, categoryId } = dataUpdate;
+    setMovieName(title);
+    setMovieYear(year);
+    setMovieCategory(categoryId);
   }, [dataUpdate]);
 
-  const handleDataUpdate = async (dataUpdate) => {
-    const { id, title, year, categoryId } = dataUpdate;
-    // await console.log(dataUpdate);
-    await setMovieName(title);
-    await setMovieYear(year);
-    await setMovieCategory(categoryId);
-      await setDataID(id);
-  };
-
-  const handleUpdateMovie = async (e) => {
-    e.preventDefault();
-    // console.log(movieName);
-    // console.log(movieYear);
-    // console.log(movieCategory);
-    console.log(dataID)
+  const updateMovie = async () => {
+    const { id } = dataUpdate;
     const dataToSend = {
       title: movieName,
       year: Number(movieYear),
       categoryId: Number(movieCategory),
     };
-
-    console.log(`send data : `,dataToSend)
-
     try {
-      const response = await axios.put(`http://localhost:3000/movie/change/${dataID}`, dataToSend)
-      console.log('Updated', response.data)
-    }catch (error){
-      console.log('Error', error)
+      const response = await axios.put(
+        `http://localhost:3000/movie/change/${id}`,
+        dataToSend
+      );
+      await setFetch(!fetch);
+      setViewError(response.data);
+      console.log("Updated", response.data);
+    } catch (error) {
+      console.log("Error", error);
     }
-  }
+  };
+
+  const handleUpdateMovie = (e) => {
+    e.preventDefault();
+    if (confirm("Yakin Ubah Data ini ?")) {
+      updateMovie();
+      setMovieName("");
+      setMovieYear("");
+      setMovieCategory(0);
+      setDataUpdate({});
+    }
+  };
 
   const handleNameChange = (e) => {
     setMovieName(e.target.value);
-    // console.log(fetch)
   };
 
   const handleYearChange = (e) => {
@@ -75,15 +71,10 @@ export const FormInput = ({ setFetch, fetch, dataUpdate }) => {
 
   const handleCategoryChange = (e) => {
     setMovieCategory(e.target.value);
-    console.log(movieCategory);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmitMovie = async (e) => {
     e.preventDefault();
-    console.log(movieName);
-    console.log(movieYear);
-    console.log(movieCategory);
-
     const postData = async () => {
       const dataToSend = {
         title: movieName,
@@ -107,18 +98,25 @@ export const FormInput = ({ setFetch, fetch, dataUpdate }) => {
     setMovieYear("");
     setMovieCategory(0);
     await setFetch(!fetch);
-
-    //  window.location.reload()
   };
 
   return (
     <div>
-      <h1>CRUD Axios</h1>
-      <p>Adding movies for new record.</p>
+      <h1 className="text-center font-bold text-xl">CRUD Axios</h1>
+      <p className="text-center font-bold text-sm">
+        Adding movies for new record.
+      </p>
 
-      <form action="" onSubmit={viewUpdate ? handleSubmit : handleUpdateMovie}>
-        <label htmlFor="title">Title</label>
+      <form
+        action=""
+        onSubmit={!dataUpdate.title ? handleSubmitMovie : handleUpdateMovie}
+        className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+      >
+        <label className="label" htmlFor="title">
+          Title
+        </label>
         <input
+          className="input"
           type="text"
           id="title"
           name="title"
@@ -127,8 +125,11 @@ export const FormInput = ({ setFetch, fetch, dataUpdate }) => {
           onChange={handleNameChange}
         />
 
-        <label htmlFor="year">Year</label>
+        <label className="label" htmlFor="year">
+          Year
+        </label>
         <input
+          className="input"
           type="number"
           id="year"
           name="year"
@@ -137,8 +138,11 @@ export const FormInput = ({ setFetch, fetch, dataUpdate }) => {
           onChange={handleYearChange}
         />
 
-        <label htmlFor="category">Category</label>
+        <label className="label" htmlFor="category">
+          Category
+        </label>
         <select
+          className="select"
           id="category"
           name="category"
           value={movieCategory || ""}
@@ -151,13 +155,27 @@ export const FormInput = ({ setFetch, fetch, dataUpdate }) => {
             </option>
           ))}
         </select>
-
-        <input type="submit" value={viewUpdate ? "Submit" : "Update "} />
+        {!dataUpdate.title ? (
+          <input type="submit" value="Submit" className="btn btn-accent" />
+        ) : (
+          <>
+            <input type="submit" value="Update " className="btn btn-success" />
+            <button
+              className="btn_cancle btn btn-secondary"
+              onClick={() => {
+                setDataUpdate({});
+              }}
+            >
+              Cancel
+            </button>
+          </>
+        )}
+        {/* <input type="submit" value={!dataUpdate.title ? "Submit" : "Update "} /> */}
       </form>
       <p>
         {viewError.status === "unsuccess"
           ? `Info : ${viewError.message}`
-          : viewError.status === "succes" && `${viewError.message}`}
+          : viewError.status === "succes" && `Info: ${viewError.message}`}
       </p>
     </div>
   );

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const CRUDAxios = ({ fetch, setDataUpdate }) => {
+export const CRUDAxios = ({ fetch, setDataUpdate}) => {
   const [movies, setMovies] = useState([]);
   const [viewError, setViewError] = useState({});
 
@@ -14,7 +14,7 @@ export const CRUDAxios = ({ fetch, setDataUpdate }) => {
       .get("http://localhost:3000/movie/view")
       .then((response) => {
         setMovies(response.data.data);
-        console.log(response.data.data);
+        // console.log(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -40,29 +40,30 @@ export const CRUDAxios = ({ fetch, setDataUpdate }) => {
       fetchMovie();
     }
   };
-  const handleUpdateMovie = (id,title, year, categoryId) => {
+
+  const handleUpdateMovie = (id, title, year, categoryId) => {
     const dataToUpdate = {
       id,
       title,
       year,
       categoryId,
     };
-    console.log(`data : `,dataToUpdate)
     setDataUpdate(dataToUpdate);
+
   };
 
   return (
     <div>
-      <h2>Movie List</h2>
+      <h2 className="text-center font-bold text-xl mb-5">Movie List</h2>
       <p>
         {viewError.status === "unsuccess"
           ? `Info : ${viewError.message}`
           : viewError.status === "succes" && `Info ; ${viewError.message}`}
       </p>
-      <div className="container_table">
-        <table>
-          <thead>
-            <tr>
+      <div className="container_table h-120 overflow-x-auto">
+        <table className="table">
+          <thead className="sticky top-0">
+            <tr className="bg-accent">
               <th>No</th>
               <th>Movie</th>
               <th>Year</th>
@@ -73,14 +74,14 @@ export const CRUDAxios = ({ fetch, setDataUpdate }) => {
 
           <tbody>
             {movies.map((movie, index) => (
-              <tr key={index}>
+              <tr key={index} className="hover:bg-base-300">
                 <td>{index + 1}</td>
                 <td>{movie.title}</td>
                 <td>{movie.year}</td>
                 <td>{movie.category?.name || "-"}</td>
                 <td>
                   <button
-                    className="btn_edit"
+                    className="btn_edit btn btn-accent mr-2"
                     onClick={() =>
                       handleUpdateMovie(
                         movie.id,
@@ -93,7 +94,7 @@ export const CRUDAxios = ({ fetch, setDataUpdate }) => {
                     Edit
                   </button>
                   <button
-                    className="btn_delete"
+                    className="btn_delete btn btn-error"
                     onClick={() => handleDeleteMovie(movie.id)}
                   >
                     Delete
