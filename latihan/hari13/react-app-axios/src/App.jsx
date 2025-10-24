@@ -1,12 +1,17 @@
+import { useState } from "react";
 import "./App.css";
 import { CRUDAxios } from "./pages/CRUDAxios";
 import { FormInput } from "./pages/FormInput";
 
 function App() {
+  const [fetch, setFetch] = useState(false);
+  const [dataUpdate, setDataUpdate] = useState({})
   return (
     <>
-      <FormInput  />
-      <CRUDAxios />
+      <div className="conatainer_root">
+        <FormInput setFetch={setFetch} fetch={fetch} dataUpdate={dataUpdate} />
+        <CRUDAxios fetch={fetch} setDataUpdate={setDataUpdate} />
+      </div>
     </>
   );
 }

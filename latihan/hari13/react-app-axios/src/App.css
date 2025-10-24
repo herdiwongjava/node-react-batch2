@@ -5,8 +5,6 @@
   text-align: center;
 }
 
-
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -43,26 +41,31 @@
   color: #888;
 }
 
-
 table {
   border-collapse: collapse;
   width: 100%;
 }
 
 th {
-  background-color: #04AA6D;
+    padding: 15px;
+  background-color: #04aa6d;
   color: white;
+    border-bottom: 1px solid #ddd;
 }
 
-th, td {
-  padding: 8px;
+td {
+  padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 tr:hover {
-  background-color: coral;
-  color: white;
+  /* background-color: coral;
+  color: white; */
+  /* transform: scale(1.05); */
+  border-left: 3px solid #04aa6d;
 }
 
 form {
@@ -72,9 +75,12 @@ form {
   margin-bottom: 50px;
 }
 
-label {display: block;}
+label {
+  display: block;
+}
 
-input[type=text], select {
+input[type="text"],input[type="number"],
+select {
   width: 100%;
   padding: 12px;
   margin: 8px 0;
@@ -84,9 +90,12 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
-input[type=submit] {
+
+
+
+input[type="submit"] {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 14px;
   margin: 8px 0;
@@ -95,6 +104,43 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+
+
+input[type="submit"]:hover {
   background-color: #45a049;
 }
+
+.conatainer_root {
+  display: flex;
+  gap: 100px;
+}
+
+.container_table {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+thead {
+position: sticky;
+top: 0;
+}
+
+
+button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 50%;
+}
+
+.btn_edit {background-color: #04AA6D;} /* Green */
+.btn_delete {background-color: #f44336;} /* Red */ 

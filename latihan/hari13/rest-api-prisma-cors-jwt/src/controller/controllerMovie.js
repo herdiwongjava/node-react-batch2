@@ -91,9 +91,9 @@ const handleReadMovieById = async (req, res) => {
 };
 
 const handleUpdateMovie = async (req, res) => {
-  let { title, year, category } = req.body;
+  let { title, year, categoryId } = req.body;
   let { id } = req.params;
-  if (!title || !year || !category) {
+  if (!title || !year || !categoryId) {
     res.json({
       message: "data yang dimasukkan salah",
       status: "unsuccess",
@@ -101,7 +101,7 @@ const handleUpdateMovie = async (req, res) => {
     return;
   }
 
-  try {
+// try{
     const updateMovie = await prisma.movies.update({
       where: {
         id: Number(id),
@@ -109,7 +109,7 @@ const handleUpdateMovie = async (req, res) => {
       data: {
         title,
         year,
-        category,
+        categoryId,
       },
     });
     res.json({
@@ -117,13 +117,13 @@ const handleUpdateMovie = async (req, res) => {
       status: "succes",
       updated: updateMovie,
     });
-  } catch (err) {
-    res.json({
-      status: "filed",
-      info: "id notfound",
-      message: err.meta.cause,
-    });
-  }
+//   } catch (err) {
+//     res.json({
+//       status: "filed",
+//       info: "id notfound",
+//       message: err,
+//     });
+//   }
 };
 
 const handleDeleteMovie = async (req, res) => {

@@ -15,7 +15,8 @@ const routerMovie = express.Router();
 routerMovie.post("/add",handleInsertMovie);
 routerMovie.get("/view", handleReadMovies);
 routerMovie.get("/view/:id", handleReadMovieById);
-routerMovie.put("/change/:id", handleJWTauth, handleUpdateMovie);
-routerMovie.delete("/remove/:id", handleJWTauth, handleDeleteMovie);
+routerMovie.put("/change/:id", handleUpdateMovie);
+routerMovie.delete("/remove/:id", handleDeleteMovie);
+// routerMovie.delete("/remove/:id", handleJWTauth, handleDeleteMovie);
 
 module.exports = { routerMovie };
