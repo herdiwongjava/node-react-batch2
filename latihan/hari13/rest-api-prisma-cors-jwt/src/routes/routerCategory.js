@@ -4,11 +4,14 @@ const { handleJWTauth } = require('../midleware/jwtAuth');
 const routerCategory = express.Router();
 
 
-routerCategory.post("/add", handleJWTauth, handleInsertCategory)
+// routerCategory.post("/add", handleJWTauth, handleInsertCategory)
+routerCategory.post("/add", handleInsertCategory)
 routerCategory.get("/view", handleReadCategory)
 routerCategory.get("/view/name", handleReadCategoryByName)
-routerCategory.put("/change/:id", handleJWTauth, handleUpdateCategory);
-routerCategory.delete("/remove/:id", handleJWTauth, handleDeleteCategory);
+routerCategory.put("/change/:id", handleUpdateCategory);
+routerCategory.delete("/remove/:id", handleDeleteCategory);
+// routerCategory.put("/change/:id", handleJWTauth, handleUpdateCategory);
+// routerCategory.delete("/remove/:id", handleJWTauth, handleDeleteCategory);
 
 module.exports = {routerCategory}
 

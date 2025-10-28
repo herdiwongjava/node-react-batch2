@@ -40,5 +40,10 @@ api : http://localhost:3000/api-docs/
 npm create vite@latest my-app -- --template react
 
 
-Install Tailwind CSS and daisyUI
+--Install Tailwind CSS and daisyUI
 npm install tailwindcss@latest @tailwindcss/vite@latest daisyui@latest
+
+
+--React Router
+npm i react-router
+import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router";

@@ -28,6 +28,7 @@ export const FormInput = ({ setFetch, fetch, dataUpdate, setDataUpdate }) => {
     setMovieName(title);
     setMovieYear(year);
     setMovieCategory(categoryId);
+    setViewError({});
   }, [dataUpdate]);
 
   const updateMovie = async () => {
@@ -63,6 +64,7 @@ export const FormInput = ({ setFetch, fetch, dataUpdate, setDataUpdate }) => {
 
   const handleNameChange = (e) => {
     setMovieName(e.target.value);
+    setViewError({});
   };
 
   const handleYearChange = (e) => {
@@ -102,14 +104,33 @@ export const FormInput = ({ setFetch, fetch, dataUpdate, setDataUpdate }) => {
 
   return (
     <div>
-      <h1 className="text-center font-bold text-xl">CRUD Axios</h1>
-      <p className="text-center font-bold text-sm">
-        Adding movies for new record.
+      <h1 className="text-center text-xl">CRUD Axios</h1>
+      <p className="text-center font-bold text-sm mb-5">
+        {!dataUpdate.id
+          ? "Adding movies for new record.e"
+          : "Edit movies for new update."}
       </p>
 
+      {/* modal final */}
+      {/* <button
+        className="btn btn-success"
+        onClick={() => document.getElementById("my_modal_5").showModal()}
+      >
+        Tambah Movie
+      </button>
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Hello!</h3>
+          <p className="py-4">Input Movie</p>
+          <div className="modal-action"></div>
+        </div>
+      </dialog> */}
+      {/* modal final */}
+
       <form
+        method="dialog"
         action=""
-        onSubmit={!dataUpdate.title ? handleSubmitMovie : handleUpdateMovie}
+        onSubmit={!dataUpdate.id ? handleSubmitMovie : handleUpdateMovie}
         className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
       >
         <label className="label" htmlFor="title">
@@ -155,11 +176,15 @@ export const FormInput = ({ setFetch, fetch, dataUpdate, setDataUpdate }) => {
             </option>
           ))}
         </select>
-        {!dataUpdate.title ? (
-          <input type="submit" value="Submit" className="btn btn-accent" />
+        {!dataUpdate.id ? (
+          <input type="submit" value="Submit" className="btn btn-accent mt-5" />
         ) : (
           <>
-            <input type="submit" value="Update " className="btn btn-success" />
+            <input
+              type="submit"
+              value="Update "
+              className="btn btn-success mt-5"
+            />
             <button
               className="btn_cancle btn btn-secondary"
               onClick={() => {
@@ -170,8 +195,8 @@ export const FormInput = ({ setFetch, fetch, dataUpdate, setDataUpdate }) => {
             </button>
           </>
         )}
-        {/* <input type="submit" value={!dataUpdate.title ? "Submit" : "Update "} /> */}
       </form>
+
       <p>
         {viewError.status === "unsuccess"
           ? `Info : ${viewError.message}`

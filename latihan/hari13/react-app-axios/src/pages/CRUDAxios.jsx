@@ -1,12 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Confirm } from "./Confirm";
 
-export const CRUDAxios = ({ fetch, setDataUpdate}) => {
+export const CRUDAxios = ({ fetch, setDataUpdate }) => {
   const [movies, setMovies] = useState([]);
   const [viewError, setViewError] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    fetchMovie();
+    const loadingFetch = setTimeout(() => {
+      fetchMovie();
+    }, 500);
+
+    return () => {
+      clearTimeout(loadingFetch);
+    };
   }, [fetch]);
 
   const fetchMovie = async () => {
@@ -27,6 +35,7 @@ export const CRUDAxios = ({ fetch, setDataUpdate}) => {
       .then((response) => {
         console.log("deleted", response.data);
         setViewError(response.data);
+        fetchMovie();
       })
       .catch((error) => {
         console.log("Error", error);
@@ -41,6 +50,12 @@ export const CRUDAxios = ({ fetch, setDataUpdate}) => {
     }
   };
 
+  const [idGet, setIdGet] = useState(null);
+  const handleConfirm = async (id) => {
+    setIdGet(id);
+    // deleteCategory(id);
+  };
+
   const handleUpdateMovie = (id, title, year, categoryId) => {
     const dataToUpdate = {
       id,
@@ -49,7 +64,20 @@ export const CRUDAxios = ({ fetch, setDataUpdate}) => {
       categoryId,
     };
     setDataUpdate(dataToUpdate);
+  };
 
+  const itemPerPage = 10;
+  const totalPage = Math.ceil(movies.length / itemPerPage);
+  const indexOfLastItem = currentPage * itemPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  const currentItems = movies.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlerPrevPage = () => {
+    currentPage > 1 && setCurrentPage(currentPage - 1);
+  };
+
+  const habdlerNextpage = () => {
+    currentPage < totalPage && setCurrentPage(currentPage + 1);
   };
 
   return (
@@ -73,9 +101,9 @@ export const CRUDAxios = ({ fetch, setDataUpdate}) => {
           </thead>
 
           <tbody>
-            {movies.map((movie, index) => (
-              <tr key={index} className="hover:bg-base-300">
-                <td>{index + 1}</td>
+            {currentItems.map((movie, index) => (
+              <tr key={indexOfFirstItem + index} className="hover:bg-base-300">
+                <td>{indexOfFirstItem + index + 1}</td>
                 <td>{movie.title}</td>
                 <td>{movie.year}</td>
                 <td>{movie.category?.name || "-"}</td>
@@ -93,17 +121,48 @@ export const CRUDAxios = ({ fetch, setDataUpdate}) => {
                   >
                     Edit
                   </button>
-                  <button
+                  {/* <button
                     className="btn_delete btn btn-error"
                     onClick={() => handleDeleteMovie(movie.id)}
                   >
                     Delete
-                  </button>
+                  </button> */}
+                  <label
+                    htmlFor="my_modal_6"
+                    className="btn_delete btn btn-error"
+                    onClick={() => handleConfirm(movie.id)}
+                  >
+                    Delete
+                  </label>
+                  <Confirm
+                    idGet={idGet}
+                    action={deleteMovie}
+                    text="delete"
+                  />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="join">
+        <button
+          className="join-item btn"
+          onClick={() => handlerPrevPage()}
+          disabled={currentPage === 1}
+        >
+          «
+        </button>
+        <button className="join-item btn">
+          Page {currentPage} of {totalPage}
+        </button>
+        <button
+          className="join-item btn"
+          onClick={() => habdlerNextpage()}
+          disabled={currentPage === totalPage}
+        >
+          »
+        </button>
       </div>
     </div>
   );

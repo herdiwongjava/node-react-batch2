@@ -183,7 +183,7 @@
                   "year": {
                     "example": "any"
                   },
-                  "category": {
+                  "categoryId": {
                     "example": "any"
                   }
                 }
@@ -226,21 +226,9 @@
     "/cat/add": {
       "post": {
         "description": "",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         },
         "requestBody": {
@@ -290,21 +278,11 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         },
         "requestBody": {
@@ -334,21 +312,11 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }

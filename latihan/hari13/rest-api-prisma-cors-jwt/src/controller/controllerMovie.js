@@ -1,6 +1,9 @@
 const { PrismaClient } = require("../../generated/prisma");
 const prisma = new PrismaClient();
 
+
+
+
 const handleInsertMovie = async (req, res) => {
   try {
     let { title, year, categoryId } = req.body;

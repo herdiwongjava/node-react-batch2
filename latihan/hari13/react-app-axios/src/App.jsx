@@ -1,26 +1,16 @@
-import { useState } from "react";
-
 // import "./App.css";
 import "./tailwid.css";
-import { CRUDAxios } from "./pages/CRUDAxios";
-import { FormInput } from "./pages/FormInput";
+import MainRoutes from "./routes/MainRoutes";
 
 function App() {
-  const [fetch, setFetch] = useState(false);
-  const [dataUpdate, setDataUpdate] = useState({});
   return (
-    <div className="conatainer_root flex gap-30">
-      <FormInput
-        setFetch={setFetch}
-        fetch={fetch}
-        dataUpdate={dataUpdate}
-        setDataUpdate={setDataUpdate}
-      />
-      <CRUDAxios 
-      fetch={fetch} 
-      setDataUpdate={setDataUpdate} 
-      />
-    </div>
+    <>
+      <MainRoutes />
+      <h1 className="text-center font-bold">BPVP SAMARINDA</h1>
+      <p className="text-center text-xl font-bold mb-15">
+        PROJECT TEST #1 - FULLSTACK
+      </p>
+    </>
   );
 }
 export default App;
