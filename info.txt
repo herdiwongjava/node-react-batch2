@@ -40,6 +40,10 @@ api : http://localhost:3000/api-docs/
 npm create vite@latest my-app -- --template react
 
 
+--CRUD Axios
+npm install axios
+
+
 --Install Tailwind CSS and daisyUI
 npm install tailwindcss@latest @tailwindcss/vite@latest daisyui@latest
 

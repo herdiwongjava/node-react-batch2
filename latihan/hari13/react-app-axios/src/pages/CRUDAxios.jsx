@@ -53,7 +53,6 @@ export const CRUDAxios = ({ fetch, setDataUpdate }) => {
   const [idGet, setIdGet] = useState(null);
   const handleConfirm = async (id) => {
     setIdGet(id);
-    // deleteCategory(id);
   };
 
   const handleUpdateMovie = (id, title, year, categoryId) => {

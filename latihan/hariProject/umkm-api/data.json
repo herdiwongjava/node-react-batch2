@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Minuman"
+  },
+  {
+    "name": "Es Teh 1",
+    "price": 5000,
+    "description": "Es yang dingin dan segar",
+    "categoryId": 1
+  },
+  {
+    "orderId": 1,
+    "productId": 4,
+    "quantity": 2,
+    "price": 20000
+  }
+]

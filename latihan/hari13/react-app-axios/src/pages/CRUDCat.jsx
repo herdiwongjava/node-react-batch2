@@ -51,7 +51,6 @@ export const CRUDCat = ({ fetch, setDataUpdate }) => {
   const [idGet, setIdGet] = useState(null);
   const handleConfirm = async (id) => {
     setIdGet(id);
-    // deleteCategory(id);
   };
 
   const handleUpdateCategory = (id, name) => {

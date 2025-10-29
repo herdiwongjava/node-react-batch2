@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const FormInputCat = ({ setFetch, fetch, dataUpdate, setDataUpdate }) => {
+export const FormInputCat = ({
+  setFetch,
+  fetch,
+  dataUpdate,
+  setDataUpdate,
+}) => {
   const [categoryName, setCategoryName] = useState("");
   const [viewError, setViewError] = useState({});
-
 
   useEffect(() => {
     const { name } = dataUpdate;
@@ -74,14 +78,15 @@ export const FormInputCat = ({ setFetch, fetch, dataUpdate, setDataUpdate }) => 
         <p className="text-center font-bold text-sm mb-5">
           Adding category for new record.
         </p>
-
         <form
           action=""
-          onSubmit={!dataUpdate.id ? handleSubmitCategory : handleUpdateCategory}
+          onSubmit={
+            !dataUpdate.id ? handleSubmitCategory : handleUpdateCategory
+          }
           className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
         >
           <label className="label" htmlFor="title">
-            {!dataUpdate.id ?"Name" : "Edit Name"}
+            {!dataUpdate.id ? "Name" : "Edit Name"}
           </label>
           <input
             className="input"

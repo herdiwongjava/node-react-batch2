@@ -10,6 +10,7 @@ const { routerMovie } = require("./src/routes/routesMovie");
 const app = express();
 const port = 3000;
 
+//setting CORS
 var corsOptions = {
     origin: process.env.CORS_ALLOW_LIST.split(","),
   optionsSuccessStatus: 200,
