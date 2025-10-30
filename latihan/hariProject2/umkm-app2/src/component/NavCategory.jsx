@@ -1,0 +1,17 @@
+export const NavCategory = () => {
+  return (
+    <>
+      <div className="sticky top-20 z-50 w-[calc(100%-40px)] h-13 bg-black content-center rounded-full mx-[20px] shadow-xl mt-[-20px]">
+        <ul className="text-white flex space-x-6 justify-center">
+          <li>
+            <a href="">Beverage</a>
+          </li>
+          <p>|</p>
+          <li>
+            <a href="">Herbal</a>
+          </li>
+        </ul>
+      </div>
+    </>
+  );
+};

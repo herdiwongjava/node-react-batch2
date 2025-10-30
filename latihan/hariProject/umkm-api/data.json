@@ -6,6 +6,7 @@
     "name": "Es Teh 1",
     "price": 5000,
     "description": "Es yang dingin dan segar",
+    "imageUrl": "https://picsum.photos/200/300",
     "categoryId": 1
   },
   {
