@@ -1,4 +1,8 @@
-export const CardItem = ({ product }) => {
+import { useContext } from "react";
+import { ContextApi } from "../Context/ContextApi";
+
+export const CardItem = () => {
+  const { product} = useContext(ContextApi);
   return (
     <>
       <div className="grid grid-cols-4 gap-6">
@@ -10,7 +14,7 @@ export const CardItem = ({ product }) => {
             <img
               src={item.imageUrl}
               alt=""
-              className="w-full h-48 object-fill"
+              className="w-full h-48 object-fill hover:scale-110 ease-in-out duration-700"
             />
             <div className="p-4 flex flex-col flex-grow">
               <h3 className="text-lg font-semibold mb-2">{item.name}</h3>

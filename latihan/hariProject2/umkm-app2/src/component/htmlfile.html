@@ -1,9 +1,30 @@
-<div
-  class="sticky top-20 z-50 w-[calc(100%-40px)] h-13 bg-black content-center rounded-full mx-[20px] shadow-xl mt-[-20px]"
->
-  <ul class="text-white flex space-x-6 justify-center py-3">
-    <li><a href="#">Minuman</a></li>
-    <p>|</p>
-    <li><a href="#">Herbal</a></li>
+<nav class="bg-gray-800 text-white p-4">
+  <ul class="flex space-x-8">
+    <li><a href="#" class="hover:text-gray-300">Home</a></li>
+
+    <li class="relative">
+      <!-- checkbox tersembunyi -->
+      <input type="checkbox" id="about-toggle" class="hidden peer" />
+
+      <!-- label untuk checkbox -->
+      <label
+        for="about-toggle"
+        class="hover:text-gray-300 flex items-center gap-1 cursor-pointer select-none"
+      >
+        About <span class="peer-checked:rotate-180 transition-transform">▼</span>
+      </label>
+
+      <!-- submenu -->
+      <ul
+        class="absolute left-0 mt-2 w-40 bg-gray-700 rounded-md shadow-lg 
+               opacity-0 scale-y-0 origin-top transition-all duration-300 
+               peer-checked:opacity-100 peer-checked:scale-y-100"
+      >
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-600">Submenu 1</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-600">Submenu 2</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#" class="hover:text-gray-300">Contact</a></li>
   </ul>
-</div>
+</nav>

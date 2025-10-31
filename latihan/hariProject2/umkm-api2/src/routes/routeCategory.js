@@ -1,9 +1,10 @@
 const express = require("express")
-const { handlerPostCategory } = require("../controller/controllerCategory")
+const { handlerPostCategory, handlerGetCategory } = require("../controller/controllerCategory")
 const routeCategory = express.Router()
 
 
 routeCategory.post("/category", handlerPostCategory)
+routeCategory.get("/category", handlerGetCategory)
 
 
 module.exports = {routeCategory}

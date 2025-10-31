@@ -1,3 +1,5 @@
+import { Link, Outlet } from "react-router";
+
 export const Navbar = () => {
   return (
     <>
@@ -10,23 +12,42 @@ export const Navbar = () => {
         <div className="content-center">
           <ul className="flex space-x-10 text-[18px] font-bold">
             <li>
-              <a className="hover:text-white" href="">
+              <Link className="hover:text-white" to="/home">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="hover:text-white" href="">
-                About
-              </a>
+              <input type="checkbox" id="toggle" className="hidden peer" />
+              <label
+                htmlFor="toggle"
+                className="cursor-pointer hover:text-white"
+              >
+                What
+                <span className="ml-3 peer-checked:rotate-180 transition-transform">
+                  ▼
+                </span>
+              </label>
+              <ul className="absolute bg-gray-50 p-3 rounded-md shadow-lg opacity-0   peer-checked:opacity-100">
+                <li className="cursor-pointer hover:text-[#FF9A00] m-2">
+                  <a>About</a>
+                </li>
+                <li className="cursor-pointer hover:text-[#FF9A00] m-2">
+                  <Link to="/admin">Admin</Link>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
         <div>
-          <a className=" text-white hover:text-white font-bold bg-black p-3 rounded-xl" href="">
+          <a
+            className=" text-white hover:text-white font-bold bg-black p-3 rounded-xl"
+            href=""
+          >
             🛒Char
           </a>
         </div>
       </nav>
+      <Outlet />
     </>
   );
 };
